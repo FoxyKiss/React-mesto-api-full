@@ -1,6 +1,6 @@
 const allowedCors = [
-  'http://foxkiss.students.nomoredomains.xyz/',
-  'https://foxkiss.students.nomoredomains.xyz/',
+  'http://foxkiss.students.nomoredomains.xyz',
+  'https://foxkiss.students.nomoredomains.xyz',
   'http://localhost:3000',
   'https://localhost:3000',
 ];
