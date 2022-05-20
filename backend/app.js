@@ -17,13 +17,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(corsRequest);
-app.use(require('./routes/auth'));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер the END');
   }, 0);
 });
+
+app.use(require('./routes/auth'));
+
 
 app.use(auth);
 app.use('/users', require('./routes/users'));
