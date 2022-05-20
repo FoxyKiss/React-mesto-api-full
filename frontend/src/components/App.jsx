@@ -166,7 +166,7 @@ function App() {
     cardApi.postCard(data)
       .then((newCard) => {
         evt.target.reset()
-        setCardsList([newCard, ...cardsList]);
+        setCardsList([newCard.data, ...cardsList]);
         closeAllPopups()
       }).catch(err => console.log(`Ошибка: ${err.status}`));
   }
