@@ -112,8 +112,10 @@ function App() {
   React.useEffect(() => {
     Promise.all([cardApi.getInfo(), cardApi.getStartCards()])
       .then(([info, cardsList]) => {
-        setCurrentUser(info.data);
+        if(localStorage.getItem('jwt')) {
+          setCurrentUser(info.data);
         setCardsList(cardsList.data);
+        }
       }).catch(err => console.log(`Ошибка: ${err.status}`));
   }, []);
 
