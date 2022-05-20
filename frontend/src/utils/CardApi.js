@@ -1,8 +1,8 @@
 //? Класс с запросами для отрисовки карт и получения информации профиля.
 class CardApi {
-  constructor(baseUrl, token) {
+  constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl
-    this._token = token
+    this._headers = headers
   }
 
   _checkResponse(res) {
@@ -16,7 +16,8 @@ class CardApi {
       method: 'GET',
       headers:
       {
-        authorization: this._token
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
       },
     }).then(this._checkResponse)
   }
@@ -26,8 +27,8 @@ class CardApi {
       method: 'PATCH',
       headers:
       {
-        authorization: this._token,
-        'Content-Type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name: data.name,
@@ -41,8 +42,9 @@ class CardApi {
       method: 'GET',
       headers:
       {
-        authorization: this._token
-      }
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+      },
     }).then(this._checkResponse)
   }
 
@@ -51,7 +53,7 @@ class CardApi {
       method: 'POST',
       headers:
       {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -66,17 +68,18 @@ class CardApi {
       method: 'DELETE',
       headers:
       {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
-      }
+      },
     }).then(this._checkResponse)
   }
 
   setAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
+      headers:
+      {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -90,9 +93,9 @@ class CardApi {
       method: 'PUT',
       headers:
       {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
-      }
+      },
     }).then(this._checkResponse)
   }
 
@@ -102,12 +105,12 @@ class CardApi {
       method: 'DELETE',
       headers:
       {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
-      }
+      },
     }).then(this._checkResponse)
   }
 }
-const cardApi = new CardApi('https://api.foxkiss.students.nomoredomains.xyz', `Bearer ${localStorage.getItem('jwt')}`)
+const cardApi = new CardApi({baseUrl: 'https://api.foxkiss.students.nomoredomains.xyz'})
 
 export default cardApi
