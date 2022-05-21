@@ -148,7 +148,7 @@ function App() {
   function handleUpdateUser(data) {
     cardApi.setInfo(data)
       .then((info) => {
-        setCurrentUser(info);
+        setCurrentUser(info.data);
         closeAllPopups()
       }).catch(err => console.log(`Ошибка: ${err.status}`));
   }
@@ -157,7 +157,7 @@ function App() {
     cardApi.setAvatar(data)
       .then((info) => {
         evt.target.reset()
-        setCurrentUser((user) => ({ ...user, avatar: info.avatar }))
+        setCurrentUser((user) => ({ ...user, avatar: info.data.avatar }))
         closeAllPopups()
       }).catch(err => console.log(`Ошибка: ${err.status}`));
   }
