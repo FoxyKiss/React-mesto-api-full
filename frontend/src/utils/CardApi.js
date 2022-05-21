@@ -89,7 +89,7 @@ class CardApi {
   }
 
   activeLike(data) {
-    return fetch(`${this._baseUrl}/cards/likes/${data._id}`, {
+    return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
       method: 'PUT',
       headers:
       {
@@ -101,7 +101,7 @@ class CardApi {
 
 
   deactiveLike(data) {
-    return fetch(`${this._baseUrl}/cards/likes/${data._id}`, {
+    return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
       method: 'DELETE',
       headers:
       {

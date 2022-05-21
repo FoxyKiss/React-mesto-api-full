@@ -10,7 +10,7 @@ export default function Card({ card, onCardClick, onDeleteClick, onCardLike }) {
   const isOwn = userInfo._id === card.owner;
   const deleteButtonClass = (`cards__delete-button ${isOwn ? '' : 'hide_delete-button'}`);
   //? Определяем, есть ли у карточки лайк, поставленный текущим пользователем  и создаём переменную класса
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
+  const isLiked = card.likes.some(i => i === currentUser._id);
   const likeButtonClass = `cards__like-button ${isLiked ? 'cards__like-button_active' : ''}`;
 
   //? Функция для модального окна изображения

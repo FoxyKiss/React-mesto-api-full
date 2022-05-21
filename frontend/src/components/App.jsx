@@ -131,15 +131,15 @@ function App() {
   }
   //? Функция лайка карточки
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     if (!isLiked) {
       cardApi.activeLike(card).then((newCard) => {
-        setCardsList((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCardsList((state) => state.map((c) => c._id === card._id ? newCard.data : c));
       }).catch(err => console.log(`Ошибка: ${err.status}`));;
     } else {
       cardApi.deactiveLike(card).then((newCard) => {
-        setCardsList((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCardsList((state) => state.map((c) => c._id === card._id ? newCard.data : c));
       }).catch(err => console.log(`Ошибка: ${err.status}`));;
     }
   }
