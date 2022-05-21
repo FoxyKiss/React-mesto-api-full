@@ -117,7 +117,7 @@ function App() {
         setCardsList(cardsList.data);
         }
       }).catch(err => console.log(`Ошибка: ${err.status}`));
-  }, []);
+  }, [emailProfile]);
 
   //? Функция удаления карточки
   function handleCardDelete(cardId) {
